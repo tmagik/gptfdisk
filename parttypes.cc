@@ -108,6 +108,10 @@ void PartType::AddAllTypes(void) {
    AddType(0x4201, "5808C8AA-7E8F-42E0-85D2-E1E90434CFB3", "Windows LDM metadata"); // Logical disk manager
    AddType(0x4202, "E75CAF8F-F680-4CEE-AFA3-B001E56EFC2D", "Windows Storage Spaces"); // A newer LDM-type setup
 
+   // SiFive Bootloader GUID partition types ('R' is 0x52 for lack of any better id)
+   AddType(0x5201, "5B193300-FC78-40CD-8002-E86C45580B47", "SiFive FSBL (first-stage bootloader)");
+   AddType(0x5202, "2E54B353-1271-4842-806F-E436D6AF6985", "SiFive bare-metal (or stage 2 loader)");
+
    // An oddball IBM filesystem....
    AddType(0x7501, "37AFFC90-EF7D-4E96-91C3-2D7AE055B174", "IBM GPFS"); // General Parallel File System (GPFS)
 
