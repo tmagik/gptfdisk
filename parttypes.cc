@@ -108,9 +108,26 @@ void PartType::AddAllTypes(void) {
    AddType(0x4201, "5808C8AA-7E8F-42E0-85D2-E1E90434CFB3", "Windows LDM metadata"); // Logical disk manager
    AddType(0x4202, "E75CAF8F-F680-4CEE-AFA3-B001E56EFC2D", "Windows Storage Spaces"); // A newer LDM-type setup
 
-   // SiFive Bootloader GUID partition types ('R' is 0x52 for lack of any better id)
+   // Legacy SiFive UUID types 
+   // https://github.com/sifive/freedom-u540-c000-bootloader/blob/master/gpt/gpt.c#L29
+   // SiFive/RiscV Bootloader GUID partition types ('R' is 0x52 for lack of any better id)
    AddType(0x5201, "5B193300-FC78-40CD-8002-E86C45580B47", "SiFive FSBL (first-stage bootloader)");
    AddType(0x5202, "2E54B353-1271-4842-806F-E436D6AF6985", "SiFive bare-metal (or stage 2 loader)");
+
+   // The following UUIDs for SiFive/RiscV MUST be type-1 UUIDs generated on a publicly available
+   // RiscV hardware running the linux 'uuid' tool, and encode the MAC address and datetime into
+   // the UUID. For example, the first set of UUIDs below were generated on a HiFive Unleashed
+   // with ethernet MAC address of 70:b3:d5:92:f0:fa
+
+   // SiFive/RiscV U-boot partitions/etc
+   AddType(0x5210, "a09354ac-cd63-11e8-9aff-70b3d592f0fa", "SiFive U-boot environment");
+   AddType(0x5211, "070dd1a8-cd64-11e8-aa3d-70b3d592f0fa", "SiFive U-boot Device Tree");
+
+   AddType(0x5220, "04ffcafa-cd65-11e8-b974-70b3d592f0fa", "SiFive U-boot FIT image");
+
+   // SiFive RiscV (RV) ubifs boot partition (has kernel, dtb, config, enviroment)
+   AddType(0x5256, "6160f298-cd64-11e8-b083-70b3d592f0fa", "SiFive UBIfs /boot filesystem");
+   // End SiFive UUID codes
 
    // An oddball IBM filesystem....
    AddType(0x7501, "37AFFC90-EF7D-4E96-91C3-2D7AE055B174", "IBM GPFS"); // General Parallel File System (GPFS)
